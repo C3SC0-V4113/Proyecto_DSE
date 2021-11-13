@@ -18,7 +18,7 @@ namespace DataAccess
         {
             if (!options.IsConfigured)
             {
-                options.UseSqlServer("Server=localhost; Database=InvetoryDb;User ID=sa; Password=123456;");
+                options.UseSqlServer("Server=localhost; Database=InvetoryDb;persist security info=True; Integrated Security = SSPI;");
             }
         }
 

@@ -12,25 +12,25 @@
     </select>
 </div>
 
-<EditForm Model="inout">
+<EditForm Model="inOut">
     <div class="form-group">
         <label>Producto</label>
-        <InputSelect class="form-control" @bind-Value="inout.StorageId">
+        <InputSelect class="form-control" @bind-Value="inOut.StorageId">
             <option>Seleccione producto...</option>
             @foreach (var storage in storages)
             {
-                <option value="@storage.StorageId">@storage.Product.ProductName</option>
+                <option value="@storage.Product.ProductId">@storage.Product.ProductName</option>
             }
         </InputSelect>
     </div>
 
     <div class="form-group">
         <label>Cantidad</label>
-        <InputNumber class="form-control" @bind-Value="inout.Quantity" />
+        <InputNumber class="form-control" @bind-Value="inOut.Quantity" />
     </div>
     <div class="form-group">
         <label>Es un ingreso</label>
-        <InputCheckbox class="form-control" @bind-Value="inout.IsInput" />
+        <InputCheckbox class="form-control" @bind-Value="inOut.IsInput" />
     </div>
     <div>
         <input type="button" value="@buttonValue" @onclick="Save" class="form-control btn btn-warning" />
@@ -38,13 +38,13 @@
 </EditForm>
 
 @code{
-    InputOutputEntity inout = new InputOutputEntity();
+    InputOutputEntity inOut = new InputOutputEntity();
     List<WarehouseEntity> warehouses = new List<WarehouseEntity>();
     List<StorageEntity> storages = new List<StorageEntity>();
     ProductEntity oProduct = new ProductEntity();
     StorageEntity oStorage = new StorageEntity();
 
-    string buttonValue => inout.IsInput ? "Registrar Entrada" : "Registrar Salida";
+    string buttonValue => inOut.IsInput ? "Registrar Entrada" : "Registrar Salida";
 
     protected override async Task OnInitializedAsync()
     {
@@ -60,11 +60,11 @@
 
     private void Save()
     {
-        var quantity = inout.Quantity;
-        var oStorage = storages.LastOrDefault(s => s.StorageId == inout.StorageId);
+        var quantity = inOut.Quantity;
+        var oStorage = storages.LastOrDefault(s => s.StorageId == inOut.StorageId);
         var product = oStorage.Product;
 
-        if (!inout.IsInput)
+        if (!inOut.IsInput)
         {
             //quantity = -1 * quantity;
             if (IsBiggerThanZero(quantity, oStorage))
