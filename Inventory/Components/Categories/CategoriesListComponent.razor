@@ -1,9 +1,6 @@
 ﻿@using Business
 @using Entities
 
-<p>
-    <a href="category/create">Agregar Nueva Categoría</a>
-</p>
 <hr />
 <div>
     Total categorías registradas: @categories.Count
@@ -30,7 +27,7 @@ else
                     <td>@category.CategoryId</td>
                     <td>@category.CategoryName</td>
                     <td>
-                        <a href="category/update/@category.CategoryId">Editar</a>
+                        <a href="categories/update/@category.CategoryId">Editar</a>
                     </td>
                 </tr>
             }
