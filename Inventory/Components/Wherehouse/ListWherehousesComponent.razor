@@ -1,9 +1,6 @@
 ﻿@using Business
 @using Entities
 
-<p>
-    <a href="wherehouse/create">Agregar Nueva Bodega</a>
-</p>
 <hr />
 <div>
     Total bodegas registradas: @warehouses.Count
@@ -30,7 +27,7 @@ else
                     <td>@warehouse.WarehouseName</td>
                     <td>@warehouse.WarehouseAddress</td>
                     <td>
-                        <a href="wherehouse/update/@warehouse.WarehouseId">Editar</a>
+                        <a href="warehouses/update/@warehouse.WarehouseId">Editar</a>
                     </td>
                 </tr>
             }

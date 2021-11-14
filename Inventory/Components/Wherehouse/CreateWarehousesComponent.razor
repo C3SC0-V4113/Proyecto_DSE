@@ -1,0 +1,36 @@
+﻿@using Entities
+@using Business
+
+@inject NavigationManager NavManager
+
+<EditForm Model="oWarehouse">
+    <DataAnnotationsValidator />
+    <div class="form-group">
+        <label for="warehouseID">Identificador:</label>
+        <InputText id="warehouseID" @bind-Value="oWarehouse.WarehouseId" class="form-control" />
+        <ValidationMessage For="@(() => oWarehouse.WarehouseId)" class="text-danger" />
+    </div>
+    <div class="form-group">
+        <label for="name">Nombre de la bodega:</label>
+        <InputText id="name" @bind-Value="oWarehouse.WarehouseName" class="form-control" />
+        <ValidationMessage For="@(() => oWarehouse.WarehouseName)" class="text-danger" />
+    </div>
+    <div class="form-group">
+        <label for="address">Dirección de la bodega:</label>
+        <InputText id="address" @bind-Value="oWarehouse.WarehouseAddress" class="form-control" />
+        <ValidationMessage For="@(() => oWarehouse.WarehouseAddress)" class="text-danger" />
+    </div>
+    <div class="form-group">
+        <input type="button" value="Agregar Bodega" @onclick="Save" class="form-control btn btn-dark" />
+    </div>
+</EditForm>
+
+@code {
+    WarehouseEntity oWarehouse = new WarehouseEntity();
+
+    private void Save()
+    {
+        B_Warehouse.CreateWherehouse(oWarehouse);
+        NavManager.NavigateTo("/warehouses/list");
+    }
+}
