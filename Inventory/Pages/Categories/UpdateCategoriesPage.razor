@@ -1,0 +1,16 @@
+﻿@using Entities
+@using Business
+@page "/categories/update/{CategoryId}"
+
+<UpdateCategoriesComponent CategoryId="@CategoryId"/>
+
+
+@code {
+    [Parameter]
+    public string CategoryId { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        CategoryId = CategoryId;
+    }
+}
