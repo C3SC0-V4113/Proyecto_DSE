@@ -42,5 +42,14 @@ namespace Business
                 db.SaveChanges();
             }
         }        
+
+        public static void DeleteProduct(ProductEntity oProduct)
+        {
+            using(var db=new InventaryContext())
+            {
+                db.Products.Remove(oProduct);
+                db.SaveChanges();
+            }
+        }
     }
 }

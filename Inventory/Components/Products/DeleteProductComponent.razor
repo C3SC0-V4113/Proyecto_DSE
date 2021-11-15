@@ -1,0 +1,44 @@
+﻿@using Entities
+@using Business
+
+@inject NavigationManager NavManager;
+
+    <div class="card">
+        <div class="card-header">
+            Eliminar Producto
+        </div>
+        <div class="card-body">
+            <h5 class="card-title">@oProduct.ProductName</h5>
+            <p class="card-text">@oProduct.ProductDescription</p>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">Referencia: @oProduct.ProductId</li>
+                <li class="list-group-item">Categoria: @oProduct.Category</li>
+                <li class="list-group-item">Cantidad Total: @oProduct.TotalQuantity</li>
+            </ul>
+            <input type="button" class="btn btn-danger" value="Eliminar Producto" @onclick="deleteProducto" />
+            <input type="button" class="btn btn-outline-primary" value="Cancelar" @onclick="Cancelar" />
+        </div>
+    </div>
+
+@code {
+    [Parameter]
+    public string IdProduct { get; set; }
+
+    ProductEntity oProduct = new ProductEntity();
+
+    protected override async Task OnInitializedAsync()
+    {
+        oProduct = B_Product.ProductById(IdProduct);
+    }
+
+    private void deleteProducto()
+    {
+        B_Product.DeleteProduct(oProduct);
+        NavManager.NavigateTo("product/list");
+    }
+
+    private void Cancelar()
+    {
+        NavManager.NavigateTo("product/list");
+    }
+}
