@@ -1,5 +1,8 @@
 ﻿<div class="top-row pl-4 navbar navbar-dark">
-    <a class="navbar-brand" href="">Inventory</a>
+    <a class="navbar-brand" href="">
+        <img src="https://www.udb.edu.sv/udb/public/img/logos/logo_universidaddonbosco.png" width="30" height="30" alt=""/>
+        Inventario UDB
+    </a>
     <button class="navbar-toggler" @onclick="ToggleNavMenu">
         <span class="navbar-toggler-icon"></span>
     </button>
@@ -10,6 +13,11 @@
         <li class="nav-item px-3">
             <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
                 <span class="oi oi-home" aria-hidden="true"></span> Home
+            </NavLink>
+        </li>
+        <li class="nav-item px-3">
+            <NavLink class="nav-link" href="inout/create" Match="NavLinkMatch.All">
+                <span class="oi oi-arrow-circle-right" aria-hidden="true"></span> Entradas y Salidas
             </NavLink>
         </li>
         <li class="nav-item px-3">
