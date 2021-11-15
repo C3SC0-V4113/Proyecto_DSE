@@ -1,0 +1,72 @@
+﻿@using Entities
+@using Business
+
+@inject NavigationManager NavManager;
+
+<div class="card">
+    <div class="card-header">
+        Eliminar Categoria
+    </div>
+    <div class="card-body">
+        <h5 class="card-title">@oCategory.CategoryName</h5>
+        <ul class="list-group list-group-flush">
+            @foreach(var product in productsTemp)
+            {
+                <li class="list-group-item">@product.ProductName</li>
+            }
+        </ul>
+        <input type="button" class="btn btn-danger" value="Eliminar Categoria" @onclick="deleteCategory" />
+        <input type="button" class="btn btn-outline-primary" value="Cancelar" @onclick="Cancelar" />
+    </div>
+    <div class="card-footer text-muted">
+        Esto eliminará los productos relacionados a la categoria y sus registros de bodega
+    </div>
+</div>
+
+@code {
+    [Parameter]
+    public string CategoryId { get; set; }
+    CategoryEntity oCategory = new CategoryEntity();
+    List<ProductEntity> products = new List<ProductEntity>();
+    List<ProductEntity> productsTemp = new List<ProductEntity>();
+    List<StorageEntity> storages = new List<StorageEntity>();
+    List<StorageEntity> storagesTemp = new List<StorageEntity>();
+
+    protected override async Task OnInitializedAsync()
+    {
+        oCategory = B_Category.CategoryById(CategoryId);
+        products = B_Product.ProductList();
+        storages = B_Storage.StorageList();
+        productsTemp = products;
+
+        if (productsTemp != null)
+        {
+            productsTemp = products.Where(p => p.CategoryId == CategoryId).ToList();
+        }
+    }
+
+    private void deleteCategory()
+    {
+        foreach(var product in productsTemp)
+        {
+            deleteStorage(product.ProductId);
+            foreach (var storage in storagesTemp)
+            {
+                B_Storage.DeleteStorage(storage);
+            }
+            B_Product.DeleteProduct(product);
+        }
+        B_Category.DeleteCategory(oCategory);
+        NavManager.NavigateTo("categories/list");
+    }
+
+    private void deleteStorage(string id)
+    {
+        storagesTemp = storages.Where(st => st.ProductId == id).ToList();
+    }
+
+    private void Cancelar()
+    {
+        NavManager.NavigateTo("categories/list");
+    }
+}

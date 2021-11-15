@@ -18,18 +18,22 @@ else
                 <th>Referencia</th>
                 <th>Categoría</th>
                 <th></th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
             @foreach (var category in categories)
             {
-                <tr>
-                    <td>@category.CategoryId</td>
-                    <td>@category.CategoryName</td>
-                    <td>
-                        <a href="categories/update/@category.CategoryId">Editar</a>
-                    </td>
-                </tr>
+            <tr>
+                <td>@category.CategoryId</td>
+                <td>@category.CategoryName</td>
+                <td>
+                    <a href="categories/update/@category.CategoryId">Editar</a>
+                </td>
+                <td>
+                    <a href="categories/delete/@category.CategoryId">Eliminar</a>
+                </td>
+            </tr>
             }
         </tbody>
     </table>

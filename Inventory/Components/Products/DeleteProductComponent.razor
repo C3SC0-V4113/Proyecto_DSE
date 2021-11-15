@@ -3,36 +3,51 @@
 
 @inject NavigationManager NavManager;
 
-    <div class="card">
-        <div class="card-header">
-            Eliminar Producto
-        </div>
-        <div class="card-body">
-            <h5 class="card-title">@oProduct.ProductName</h5>
-            <p class="card-text">@oProduct.ProductDescription</p>
-            <ul class="list-group list-group-flush">
-                <li class="list-group-item">Referencia: @oProduct.ProductId</li>
-                <li class="list-group-item">Categoria: @oProduct.Category</li>
-                <li class="list-group-item">Cantidad Total: @oProduct.TotalQuantity</li>
-            </ul>
-            <input type="button" class="btn btn-danger" value="Eliminar Producto" @onclick="deleteProducto" />
-            <input type="button" class="btn btn-outline-primary" value="Cancelar" @onclick="Cancelar" />
-        </div>
+<div class="card">
+    <div class="card-header">
+        Eliminar Producto
     </div>
+    <div class="card-body">
+        <h5 class="card-title">@oProduct.ProductName</h5>
+        <p class="card-text">@oProduct.ProductDescription</p>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">Referencia: @oProduct.ProductId</li>
+            <li class="list-group-item">Categoria: @oProduct.Category</li>
+            <li class="list-group-item">Cantidad Total: @oProduct.TotalQuantity</li>
+        </ul>
+        <input type="button" class="btn btn-danger" value="Eliminar Producto" @onclick="deleteProducto" />
+        <input type="button" class="btn btn-outline-primary" value="Cancelar" @onclick="Cancelar" />
+    </div>
+    <div class="card-footer text-muted">
+        Esto eliminará los registros en bodega del producto
+    </div>
+</div>
 
 @code {
     [Parameter]
     public string IdProduct { get; set; }
 
     ProductEntity oProduct = new ProductEntity();
+    List<StorageEntity> storages = new List<StorageEntity>();
+    List<StorageEntity> storagesTemp = new List<StorageEntity>();
 
     protected override async Task OnInitializedAsync()
     {
         oProduct = B_Product.ProductById(IdProduct);
+        storages = B_Storage.StorageList();
+        storagesTemp = storages;
+        if (storagesTemp != null)
+        {
+            storagesTemp = storages.Where(st => st.ProductId == IdProduct).ToList();
+        }
     }
 
     private void deleteProducto()
     {
+        foreach(var storage in storagesTemp)
+        {
+            B_Storage.DeleteStorage(storage);
+        }
         B_Product.DeleteProduct(oProduct);
         NavManager.NavigateTo("product/list");
     }

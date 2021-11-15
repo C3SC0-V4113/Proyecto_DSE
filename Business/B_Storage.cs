@@ -80,5 +80,14 @@ namespace Business
                 db.SaveChanges();
             }
         }
+
+        public static void DeleteStorage(StorageEntity oStorage)
+        {
+            using (var db = new InventaryContext())
+            {
+                db.Storages.Remove(oStorage);
+                db.SaveChanges();
+            }
+        }
     }
 }
