@@ -12,7 +12,7 @@
 }
 else
 {
-    <table class="display table table-bordered table-hover">
+    <table class="display table table-striped table-hover">
         <thead>
             <tr>
                 <th>Bodega</th>
@@ -28,10 +28,10 @@ else
                 <td>@warehouse.WarehouseName</td>
                 <td>@warehouse.WarehouseAddress</td>
                 <td>
-                    <a href="warehouses/update/@warehouse.WarehouseId">Editar</a>
+                    <a class="btn btn-outline-secondary" href="warehouses/update/@warehouse.WarehouseId">Editar</a>
                 </td>
                 <td>
-                    <a href="warehouses/delete/@warehouse.WarehouseId">Eliminar</a>
+                    <a class="btn btn-danger" href="warehouses/delete/@warehouse.WarehouseId">Eliminar</a>
                 </td>
             </tr>
             }

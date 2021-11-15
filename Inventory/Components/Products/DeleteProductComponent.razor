@@ -14,8 +14,10 @@
             <li class="list-group-item">Referencia: @oProduct.ProductId</li>
             <li class="list-group-item">Cantidad Total: @oProduct.TotalQuantity</li>
         </ul>
-        <input type="button" class="btn btn-danger" value="Eliminar Producto" @onclick="deleteProducto" />
-        <input type="button" class="btn btn-outline-primary" value="Cancelar" @onclick="Cancelar" />
+        <div class="mt-2">
+            <input type="button" class="btn btn-danger" value="Eliminar Producto" @onclick="deleteProducto" />
+            <input type="button" class="btn btn-outline-primary" value="Cancelar" @onclick="Cancelar" />
+        </div>
     </div>
     <div class="card-footer text-muted">
         Esto eliminará los registros en bodega del producto

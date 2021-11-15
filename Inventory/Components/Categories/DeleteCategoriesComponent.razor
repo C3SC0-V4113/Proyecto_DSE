@@ -12,11 +12,13 @@
         <ul class="list-group list-group-flush">
             @foreach(var product in productsTemp)
             {
-                <li class="list-group-item">@product.ProductName</li>
+                <li class="list-group-item p-2">@product.ProductName</li>
             }
         </ul>
-        <input type="button" class="btn btn-danger" value="Eliminar Categoria" @onclick="deleteCategory" />
-        <input type="button" class="btn btn-outline-primary" value="Cancelar" @onclick="Cancelar" />
+        <div class="mt-2">
+            <input type="button" class="btn btn-danger" value="Eliminar Categoria" @onclick="deleteCategory" />
+            <input type="button" class="btn btn-outline-primary" value="Cancelar" @onclick="Cancelar" />
+        </div>
     </div>
     <div class="card-footer text-muted">
         Esto eliminará los productos relacionados a la categoria y sus registros de bodega

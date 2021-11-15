@@ -11,7 +11,8 @@
         <ValidationMessage For="@(() => oCategory.CategoryName)" class="text-danger" />
     </div>
     <div class="form-group">
-        <input type="button" value="Editar Categoría" @onclick="updateCategory" class="form-control btn btn-dark" />
+        <input type="button" value="Editar Categoría" @onclick="updateCategory" class="form-control btn btn-dark mb-2" />
+        <input type="button" value="Cancelar" @onclick="Cancelar" class="form-control btn btn-outline-primary" />
     </div>
 </EditForm>
 
@@ -30,6 +31,11 @@
     private void updateCategory()
     {
         B_Category.UpdateCategory(oCategory);
+        NavManager.NavigateTo("categories/list");
+    }
+
+    private void Cancelar()
+    {
         NavManager.NavigateTo("categories/list");
     }
 }

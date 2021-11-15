@@ -22,13 +22,15 @@
             <InputSelect @bind-Value="oProduct.CategoryId" class="form-control">
                 <option value="">Seleccionar categoría..</option>
                 @foreach (var category in categories)
-                { 
-                    <option value="@category.CategoryId" >@category.CategoryName</option>
+                {
+                    <option value="@category.CategoryId">@category.CategoryName</option>
                 }
             </InputSelect>
         </div>
-
-        <input type="button" value="Agregar Producto" @onclick="SaveProduct" />
+        <div class="form-group">
+            <input type="button" value="Agregar Producto" @onclick="SaveProduct" class="form-control btn btn-dark mb-2" />
+            <input type="button" value="Cancelar" @onclick="Cancelar" class="form-control btn btn-outline-primary" />
+        </div>
     </EditForm>
 </div>
 
@@ -46,4 +48,10 @@
         B_Product.CreateProduct(oProduct);
         NavManager.NavigateTo("product/list");
     }
+
+    private void Cancelar()
+    {
+        NavManager.NavigateTo("product/list");
+    }
+
 }

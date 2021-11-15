@@ -16,7 +16,8 @@
         <ValidationMessage For="@(() => oCategory.CategoryName)" class="text-danger" />
     </div>
     <div class="form-group">
-        <input type="button" value="Agregar Categoría" @onclick="Save" class="form-control btn btn-dark" />
+        <input type="button" value="Agregar Categoría" @onclick="Save" class="form-control btn btn-dark mb-2" />
+        <input type="button" value="Cancelar" @onclick="Cancelar" class="form-control btn btn-outline-primary" />
     </div>
 </EditForm>
 
@@ -26,7 +27,12 @@
     private void Save()
     {
         B_Category.CreateCategory(oCategory);
-        NavManager.NavigateTo("/categories/list");
+        NavManager.NavigateTo("categories/list");
+    }
+
+    private void Cancelar()
+    {
+        NavManager.NavigateTo("categories/list");
     }
 
     private void HandleValidSubmit()

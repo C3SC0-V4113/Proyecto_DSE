@@ -12,7 +12,7 @@
 }
 else
 {
-    <table id="categoriesTable" class="display table table-bordered table-hover">
+    <table id="categoriesTable" class="display table table-striped table-hover">
         <thead>
             <tr>
                 <th>Referencia</th>
@@ -28,10 +28,10 @@ else
                 <td>@category.CategoryId</td>
                 <td>@category.CategoryName</td>
                 <td>
-                    <a href="categories/update/@category.CategoryId">Editar</a>
+                    <a class="btn btn-outline-secondary" href="categories/update/@category.CategoryId">Editar</a>
                 </td>
                 <td>
-                    <a href="categories/delete/@category.CategoryId">Eliminar</a>
+                    <a class="btn btn-danger" href="categories/delete/@category.CategoryId">Eliminar</a>
                 </td>
             </tr>
             }

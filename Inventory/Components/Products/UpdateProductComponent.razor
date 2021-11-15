@@ -22,8 +22,10 @@
             }
         </InputSelect>
     </div>
-
-    <input type="button" value="Actualizar Producto" @onclick="updateProducto"/>
+    <div class="form-group">
+        <input type="button" value="Editar Producto" @onclick="updateProducto" class="form-control btn btn-dark mb-2" />
+        <input type="button" value="Cancelar" @onclick="Cancelar" class="form-control btn btn-outline-primary" />
+    </div>
 </EditForm>
 
 @code {
@@ -42,6 +44,11 @@
     private void updateProducto()
     {
         B_Product.UpdateProduct(oProduct);
+        NavManager.NavigateTo("product/list");
+    }
+
+    private void Cancelar()
+    {
         NavManager.NavigateTo("product/list");
     }
 }

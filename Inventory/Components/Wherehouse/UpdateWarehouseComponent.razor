@@ -16,7 +16,8 @@
         <ValidationMessage For="@(() => oWarehouse.WarehouseAddress)" class="text-danger" />
     </div>
     <div class="form-group">
-        <input type="button" value="Actualizar Bodega" @onclick="updateWarehouse" class="form-control btn btn-dark" />
+        <input type="button" value="Editar Bodega" @onclick="updateWarehouse" class="form-control btn btn-dark mb-2" />
+        <input type="button" value="Cancelar" @onclick="Cancelar" class="form-control btn btn-outline-primary" />
     </div>
 </EditForm>
 
@@ -35,6 +36,10 @@
     private void updateWarehouse()
     {
         B_Warehouse.UpdateWherehouse(oWarehouse);
+        NavManager.NavigateTo("warehouses/list");
+    }
+    private void Cancelar()
+    {
         NavManager.NavigateTo("warehouses/list");
     }
 }
