@@ -12,7 +12,7 @@
         <p class="card-text">@oProduct.ProductDescription</p>
         <ul class="list-group list-group-flush">
             <li class="list-group-item">Referencia: @oProduct.ProductId</li>
-            <li class="list-group-item">Categoria: @oProduct.Category</li>
+            <li class="list-group-item">Categoria: @oProduct.Category.CategoryName</li>
             <li class="list-group-item">Cantidad Total: @oProduct.TotalQuantity</li>
         </ul>
         <input type="button" class="btn btn-danger" value="Eliminar Producto" @onclick="deleteProducto" />

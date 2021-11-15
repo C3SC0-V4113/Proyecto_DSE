@@ -42,5 +42,14 @@ namespace Business
                 db.SaveChanges();
             }
         }
+
+        public static void DeleteWarehouse(WarehouseEntity oWarehouse)
+        {
+            using (var db = new InventaryContext())
+            {
+                db.Warehouses.Remove(oWarehouse);
+                db.SaveChanges();
+            }
+        }
     }
 }

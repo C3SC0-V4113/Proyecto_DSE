@@ -18,18 +18,22 @@ else
                 <th>Bodega</th>
                 <th>Dirección</th>
                 <th></th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
             @foreach (var warehouse in warehouses)
             {
-                <tr>
-                    <td>@warehouse.WarehouseName</td>
-                    <td>@warehouse.WarehouseAddress</td>
-                    <td>
-                        <a href="warehouses/update/@warehouse.WarehouseId">Editar</a>
-                    </td>
-                </tr>
+            <tr>
+                <td>@warehouse.WarehouseName</td>
+                <td>@warehouse.WarehouseAddress</td>
+                <td>
+                    <a href="warehouses/update/@warehouse.WarehouseId">Editar</a>
+                </td>
+                <td>
+                    <a href="warehouses/delete/@warehouse.WarehouseId">Eliminar</a>
+                </td>
+            </tr>
             }
         </tbody>
     </table>

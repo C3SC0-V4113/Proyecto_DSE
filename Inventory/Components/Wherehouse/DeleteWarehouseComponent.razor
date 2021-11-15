@@ -1,0 +1,55 @@
+﻿@using Entities
+@using Business
+
+@inject NavigationManager NavManager;
+
+<div class="card">
+    <div class="card-header">
+        Eliminar Bodega
+    </div>
+    <div class="card-body">
+        <h5 class="card-title">@oWarehouse.WarehouseName</h5>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">Dirección: @oWarehouse.WarehouseAddress</li>
+        </ul>
+        <input type="button" class="btn btn-danger" value="Eliminar Producto" @onclick="deleteWarehouse" />
+        <input type="button" class="btn btn-outline-primary" value="Cancelar" @onclick="Cancelar" />
+    </div>
+    <div class="card-footer text-muted">
+        Esto eliminará los registros en bodega de los productos
+    </div>
+</div>
+
+@code {
+    [Parameter]
+    public string WarehouseId { get; set; }
+    WarehouseEntity oWarehouse = new WarehouseEntity();
+    List<StorageEntity> storages = new List<StorageEntity>();
+    List<StorageEntity> storagesTemp = new List<StorageEntity>();
+
+    protected override async Task OnInitializedAsync()
+    {
+        oWarehouse = B_Warehouse.WarehouseById(WarehouseId);
+        storages = B_Storage.StorageList();
+        storagesTemp = storages;
+        if (storagesTemp != null)
+        {
+            storagesTemp = storages.Where(st => st.WarehouseId == WarehouseId).ToList();
+        }
+    }
+
+    private void deleteWarehouse()
+    {
+        foreach (var storage in storagesTemp)
+        {
+            B_Storage.DeleteStorage(storage);
+        }
+        B_Warehouse.DeleteWarehouse(oWarehouse);
+        NavManager.NavigateTo("warehouses/list");
+    }
+
+    private void Cancelar()
+    {
+        NavManager.NavigateTo("warehouses/list");
+    }
+}
