@@ -2,15 +2,31 @@
 
 <div class="container-fluid">
     <div class="row">
-        <div class="col-sm-12 col-md-4">
+        <div class="col-sm-12 col-lg-4">
             <img src="https://upload.wikimedia.org/wikipedia/commons/c/cc/Universidad_don_bosco.jpg" class="img-fluid" />
         </div>
-        <div class="col-sm-12 col-md-8">
+        <div class="col-sm-12 col-lg-8">
             <h1>Sistema de Inventario UDB</h1>
             <hr />
             <p class="mt-2">
-                Bienvenido al Sistema de entradas y salidas y de productos en bodegas.
+                Bienvenido al Sistema de entradas y salidas y de productos en bodegas.<br />
+                Se ha creado un sistema eficaz de salidas y entradas para que se pueda llevar un control total del inventario, de sus ubicaciones y cantidades.<br />
+                Cada pestaña en el navegador representa una entidad creable,  listable, modificable y eliminable.
             </p>
+            <div class="row justify-content-around">
+                <div class="col-sm-6 col-xl-3 d-flex mb-sm-3">
+                    <a class="btn btn-primary btn-lg btn-block rounded-2" href="/product/list" role="button"><span class="oi oi-basket mr-2" aria-hidden="true"></span>Productos</a>
+                </div>
+                <div class="col-sm-6 col-xl-3 d-flex mb-sm-3">
+                    <a class="btn btn-warning btn-lg btn-block rounded-2" href="/categories/list" role="button"><span class="oi oi-plus mr-2" aria-hidden="true"></span>Categorias</a>
+                </div>
+                <div class="col-sm-6 col-xl-3 d-flex mb-sm-3">
+                    <a class="btn btn-secondary btn-lg btn-block rounded-2" href="/storage/create" role="button"><span class="oi oi-box mr-2" aria-hidden="true"></span>Almacenar</a>
+                </div>
+                <div class="col-sm-6 col-xl-3 d-flex mb-sm-3">
+                    <a class="btn btn-dark btn-lg btn-block rounded-2" href="/warehouses/list" role="button"><span class="oi oi-location mr-2" aria-hidden="true"></span>Bodegas</a>
+                </div>
+            </div>
         </div>
     </div>
 </div>
